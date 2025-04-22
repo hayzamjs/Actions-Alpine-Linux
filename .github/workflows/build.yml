@@ -3,7 +3,7 @@ on:
     branches: [ master ]
 jobs:
   prepare_release:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
     - name: Get release tag
@@ -27,7 +27,7 @@ jobs:
 
   build_alpine:
     needs: prepare_release
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
     - name: Checkout
@@ -96,7 +96,7 @@ jobs:
 
   build_img:
     needs: [prepare_release,build_alpine]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: github.event.repository.owner.id == github.event.sender.id
 
     strategy:
@@ -264,4 +264,3 @@ jobs:
         asset_name: ${{ steps.build_sd_image.outputs.img_filename_sd2emmc }}.gz
         tag: ${{ needs.prepare_release.outputs.release_tag }}
         overwrite: true
-
