@@ -47,6 +47,13 @@ http://mirrors.aliyun.com/alpine/v3.21/main
 http://mirrors.aliyun.com/alpine/v3.21/community
 EOL
 
+apk update
+apk add zfs zfs-utils
+
+rc-update add zfs-import
+rc-update add zfs-mount
+rc-update add zfs-zed
+
 # run setup-alpine quick mode
 cat << 'EOL' > /answer_file
 # Use US layout with US variant
